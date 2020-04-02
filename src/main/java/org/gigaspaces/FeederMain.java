@@ -107,10 +107,10 @@ public class FeederMain {
         calcs.setInt1(parseMyInt(line[i++]));
         calcs.setInt2(Integer.parseInt(line[i++]));
         calcs.setInt3(Integer.parseInt(line[i++]));
-        calcs.setBool0(Boolean.valueOf(parseString(line[i++])));
-        calcs.setBool1(Boolean.valueOf(parseString(line[i++])));
-        calcs.setBool2(Boolean.valueOf(parseString(line[i++])));
-        calcs.setBool3(Boolean.valueOf(parseString(line[i++])));
+        calcs.setBool0(parseBoolean(parseString(line[i++])));
+        calcs.setBool1(parseBoolean(parseString(line[i++])));
+        calcs.setBool2(parseBoolean(parseString(line[i++])));
+        calcs.setBool3(parseBoolean(parseString(line[i++])));
         calcs.setDate0(parseDate(line[i++]));
         calcs.setDate1(parseDate(line[i++]));
         calcs.setDate2(parseDate(line[i++]));
@@ -207,6 +207,10 @@ public class FeederMain {
 
     }
 
+    private Boolean parseBoolean(String s){
+        return s != null ? Boolean.parseBoolean(s) : null;
+    }
+
     private String parseProductName(String S){
    //     if (S.isEmpty()) return null;
         if (S.isEmpty()) return "";
@@ -236,8 +240,7 @@ public class FeederMain {
 
     private String parseString(String S) {
         String S1 = S.replace("\"","");
-        return S1;
-
+        return S1.length() == 0 ? null : S1;
     }
 
 
