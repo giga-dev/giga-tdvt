@@ -1,4 +1,4 @@
-package org.gigaspaces.model.superstore;
+package main.java.org.gigaspaces.model.superstore;
 
 import com.gigaspaces.annotation.pojo.SpaceClass;
 import com.gigaspaces.annotation.pojo.SpaceId;

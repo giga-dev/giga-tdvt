@@ -1,4 +1,4 @@
-package org.gigaspaces.model.superstore;
+package main.java.org.gigaspaces.model.superstore;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -25,10 +25,10 @@ public class Calcs {
     private Integer int1;
     private Integer int2;
     private Integer int3;
-    private String bool0;
-    private String bool1;
-    private String  bool2;
-    private String  bool3;
+    private Boolean bool0;
+    private Boolean bool1;
+    private Boolean  bool2;
+    private Boolean  bool3;
     private Date date0;
     private Date date1;
     private Date date2;
@@ -154,35 +154,35 @@ public class Calcs {
         this.int3 = int3;
     }
 
-    public String getBool0() {
+    public Boolean getBool0() {
         return bool0;
     }
 
-    public void setBool0(String bool0) {
+    public void setBool0(Boolean bool0) {
         this.bool0 = bool0;
     }
 
-    public String getBool1() {
+    public Boolean getBool1() {
         return bool1;
     }
 
-    public void setBool1(String bool1) {
+    public void setBool1(Boolean bool1) {
         this.bool1 = bool1;
     }
 
-    public String getBool2() {
+    public Boolean getBool2() {
         return bool2;
     }
 
-    public void setBool2(String bool2) {
+    public void setBool2(Boolean bool2) {
         this.bool2 = bool2;
     }
 
-    public String getBool3() {
+    public Boolean getBool3() {
         return bool3;
     }
 
-    public void setBool3(String bool3) {
+    public void setBool3(Boolean bool3) {
         this.bool3 = bool3;
     }
 
