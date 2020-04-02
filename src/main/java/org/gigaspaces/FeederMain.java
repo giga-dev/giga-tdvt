@@ -1,10 +1,9 @@
-package org.gigaspaces;
+package main.java.org.gigaspaces;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import org.apache.commons.io.IOUtils;
-import org.gigaspaces.model.superstore.Staples;
-import org.gigaspaces.model.superstore.Calcs;
+import  main.java.org.gigaspaces.model.superstore.*;
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.GigaSpaceConfigurer;
 import org.openspaces.core.space.UrlSpaceConfigurer;
@@ -108,10 +107,10 @@ public class FeederMain {
         calcs.setInt1(parseMyInt(line[i++]));
         calcs.setInt2(Integer.parseInt(line[i++]));
         calcs.setInt3(Integer.parseInt(line[i++]));
-        calcs.setBool0(parseString(line[i++]));
-        calcs.setBool1(parseString(line[i++]));
-        calcs.setBool2(parseString(line[i++]));
-        calcs.setBool3(parseString(line[i++]));
+        calcs.setBool0(Boolean.valueOf(parseString(line[i++])));
+        calcs.setBool1(Boolean.valueOf(parseString(line[i++])));
+        calcs.setBool2(Boolean.valueOf(parseString(line[i++])));
+        calcs.setBool3(Boolean.valueOf(parseString(line[i++])));
         calcs.setDate0(parseDate(line[i++]));
         calcs.setDate1(parseDate(line[i++]));
         calcs.setDate2(parseDate(line[i++]));
