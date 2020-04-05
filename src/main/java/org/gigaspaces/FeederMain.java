@@ -16,6 +16,8 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.function.Function;
 
 
@@ -198,7 +200,6 @@ public class FeederMain {
         return Integer.parseInt(S);
     }
 
-
     private Time parseTime(String S){
         if (S.isEmpty()) return null;
         return Time.valueOf(unquote(S));
@@ -215,24 +216,15 @@ public class FeederMain {
 
     }
 
-
     private Timestamp parseDateTime(String S) {
         String S1 = S.replace("\"","");
         if (S1.isEmpty()) return null;
-        try { return new Timestamp(DATE_TIME_FORMAT.parse(unquote(S)).getTime());}
-        catch (ParseException e) {
-            throw new RuntimeException("could not parse date and time :" +S,e );
-        }
-
+        return Timestamp.valueOf(LocalDateTime.parse(unquote(S)));
     }
 
     private Date parseDate(String S) {
         if (S.isEmpty()) return null;
-        try {  return new Date(DATE_FORMAT.parse(unquote(S)).getTime());}
-        catch (ParseException e){
-            throw new RuntimeException("failed to parse dates " + S,e);
-        }
-
+        return Date.valueOf(LocalDate.parse(unquote(S)));
     }
 
     private String parseString(String S) {
