@@ -191,17 +191,20 @@ public class FeederMain {
     }
 
     private Double parseDouble(String S){
-        if(S.isEmpty()) return null;
+        if(!validateString(S))
+            return null;
         return Double.parseDouble(S);
     }
 
-    private Integer parseMyInt(String S){
-        if (S.isEmpty()) return null;
+    private Integer parseInteger(String S){
+        if(!validateString(S))
+            return null;
         return Integer.parseInt(S);
     }
 
     private Time parseTime(String S){
-        if (S.isEmpty()) return null;
+        if(!validateString(S))
+            return null;
         return Time.valueOf(unquote(S));
     }
 
@@ -210,32 +213,39 @@ public class FeederMain {
     }
 
     private String parseProductName(String S){
-        //     if (S.isEmpty()) return null;
-        if (S.isEmpty()) return "";
+        if(!validateString(S))
+            return null;
         return unquote(S);
 
     }
 
     private Timestamp parseDateTime(String S) {
-        String S1 = S.replace("\"","");
-        if (S1.isEmpty()) return null;
+        if(!validateString(S))
+            return null;
         return Timestamp.valueOf(LocalDateTime.parse(unquote(S.replace(" ", "T"))));
     }
 
     private Date parseDate(String S) {
-        if (S.isEmpty()) return null;
+        if(!validateString(S))
+            return null;
         return Date.valueOf(LocalDate.parse(unquote(S)));
     }
 
     private String parseString(String S) {
-        String S1 = S.replace("\"","");
+        if(!validateString(S))
+            return null;
+        String S1 = unquote(S);
         return S1.length() == 0 ? null : S1;
     }
 
-
     private String unquote (String S) {
-        S = S.substring(1,S.length()-1);
-        return S;
+        return S.replace("\"","");
+    }
+
+    private boolean validateString(String s){
+        if (s == null || s.isEmpty())
+            return false;
+        return true;
     }
 
     private GigaSpace createSpace() {
