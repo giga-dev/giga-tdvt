@@ -8,9 +8,11 @@ import org.openspaces.core.GigaSpace;
 import org.openspaces.core.GigaSpaceConfigurer;
 import org.openspaces.core.space.UrlSpaceConfigurer;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -50,7 +52,7 @@ public class FeederMain {
         System.out.println("Completed!");
     }
 
- //  public static void main(String ... argv){
+    //  public static void main(String ... argv){
 
 //      // LocalDate S = new LocalDate.parse("2004-04-01");
 //       CharSequence S = "2004-04-01";
@@ -62,11 +64,11 @@ public class FeederMain {
 
     public void run() throws IOException, URISyntaxException {
         GigaSpace space = createSpace();
-     //   GigaSpace space = null;
+        //   GigaSpace space = null;
         loadCsv(space, Staples_file, this::convertStaples);
         loadCsv(space, Calcs_file, this::convertOrders);
-       // int thecount = space.count(null);
-       // System.out.println("the count:" + thecount);
+        // int thecount = space.count(null);
+        // System.out.println("the count:" + thecount);
     }
 
     private void loadCsv(GigaSpace space, String fileName, Function<String[], Object> converter) throws URISyntaxException, IOException {
@@ -81,9 +83,9 @@ public class FeederMain {
         try {
             Object o = converter.apply(line);
 
-          space.write(o);
+            space.write(o);
         } catch (Exception e) {
-           // System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
             e.printStackTrace();
             throw new RuntimeException(e);
         }
@@ -118,7 +120,7 @@ public class FeederMain {
         calcs.setTime0(parseDateTime(line[i++])); //???
         calcs.setTime1(parseTime(line[i++])); //???
         calcs.setDatetime0(parseDateTime(line[i++]));
-        calcs.setDatetime1(parseDateTime(line[i++]));
+        calcs.setDatetime1(parseString(line[i++]));
         calcs.setZzz(parseString(line[i++])); // ???
 
 
@@ -158,7 +160,7 @@ public class FeederMain {
         staples.setProd_Type2(line[i++]);
         staples.setProd_Type3(line[i++]);
         staples.setProd_Type4(line[i++]);
- //       staples.setProduct_Name(line[i++]);// Max
+        //       staples.setProduct_Name(line[i++]);// Max
         staples.setProduct_Name(parseProductName(line[i++]));
         staples.setProduct_Container(line[i++]);
         staples.setShip_Promo(line[i++]);
@@ -197,13 +199,9 @@ public class FeederMain {
     }
 
 
-    private Timestamp parseTime(String S){
+    private Time parseTime(String S){
         if (S.isEmpty()) return null;
-        try {return new Timestamp(TIME_FORMAT.parse(unquote(S)).getTime());}
-        catch (ParseException e){
-            throw new RuntimeException("could not parse time " +S,e);
-        }
-
+        return Time.valueOf(unquote(S));
     }
 
     private Boolean parseBoolean(String s){
@@ -211,11 +209,11 @@ public class FeederMain {
     }
 
     private String parseProductName(String S){
-   //     if (S.isEmpty()) return null;
+        //     if (S.isEmpty()) return null;
         if (S.isEmpty()) return "";
         return unquote(S);
 
-        }
+    }
 
 
     private Timestamp parseDateTime(String S) {
@@ -230,10 +228,10 @@ public class FeederMain {
 
     private Date parseDate(String S) {
         if (S.isEmpty()) return null;
-      try {  return new Date(DATE_FORMAT.parse(unquote(S)).getTime());}
-      catch (ParseException e){
-          throw new RuntimeException("failed to parse dates " + S,e);
-      }
+        try {  return new Date(DATE_FORMAT.parse(unquote(S)).getTime());}
+        catch (ParseException e){
+            throw new RuntimeException("failed to parse dates " + S,e);
+        }
 
     }
 

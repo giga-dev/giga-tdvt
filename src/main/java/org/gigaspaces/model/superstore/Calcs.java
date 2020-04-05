@@ -34,9 +34,9 @@ public class Calcs {
     private Date date2;
     private Date date3;
     private Timestamp time0;
-    private Timestamp time1;
+    private Time time1;
     private Timestamp datetime0;
-    private Timestamp datetime1;
+    private String datetime1;
    // private Character zzz;
     private String zzz;
 
@@ -226,11 +226,11 @@ public class Calcs {
         this.time0 = time0;
     }
 
-    public Timestamp getTime1() {
+    public Time getTime1() {
         return time1;
     }
 
-    public void setTime1(Timestamp time1) {
+    public void setTime1(Time time1) {
         this.time1 = time1;
     }
 
@@ -242,11 +242,11 @@ public class Calcs {
         this.datetime0 = datetime0;
     }
 
-    public Timestamp getDatetime1() {
+    public String getDatetime1() {
         return datetime1;
     }
 
-    public void setDatetime1(Timestamp datetime1) {
+    public void setDatetime1(String datetime1) {
         this.datetime1 = datetime1;
     }
 
