@@ -28,9 +28,6 @@ public class FeederMain {
 
     private static final String Calcs_file = "/Calcs_headers.csv";
     private static final String Staples_file = "/Staples_utf8_headers.csv";
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-DD");
-    private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");
-    private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("hh:mm:ss");
 
 //    @Parameter(names={"--userName"}, required = true)
 //    private String userName;
