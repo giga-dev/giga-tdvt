@@ -179,8 +179,8 @@ public class FeederMain {
         staples.setProduct_Base_Margin(Double.parseDouble(line[i++]));
         staples.setProduct_ID(Integer.parseInt(line[i++]));
         staples.setReceive_Time(Integer.parseInt(line[i++]));
-        staples.setReceived_Date(Timestamp.valueOf(line[i++]));
-        staples.setShip_Date(Timestamp.valueOf(line[i++]));
+        staples.setReceived_Date(parseDateTime(line[i++]));
+        staples.setShip_Date(parseDateTime(line[i++]));
         staples.setShip_Charge(Double.parseDouble(line[i++]));
         staples.setTotal_Cycle_Time(Integer.parseInt(line[i++]));
         staples.setProduct_In_Stock(line[i++]);
