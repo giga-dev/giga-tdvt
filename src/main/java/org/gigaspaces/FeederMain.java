@@ -97,8 +97,8 @@ public class FeederMain {
         calcs.setNum0(parseDouble(line[i++]));
         calcs.setNum1(parseDouble(line[i++]));
         calcs.setNum2(parseDouble(line[i++]));
-        calcs.setNum3(Double.parseDouble(line[i++]));
-        calcs.setNum4(line[i++]);
+        calcs.setNum3(parseDouble(line[i++]));
+        calcs.setNum4(parseDouble(line[i++]));
         calcs.setStr0(parseString(line[i++]));
         calcs.setStr1(parseString(line[i++]));
         calcs.setStr2(parseString(line[i++]));
@@ -119,7 +119,6 @@ public class FeederMain {
         calcs.setTime1(parseTime(line[i++])); //???
         calcs.setDatetime0(parseDateTime(line[i++]));
         calcs.setDatetime1(parseDateTime(line[i++]));
-       // calcs.setZzz(line[i++].charAt(0)); // ???
         calcs.setZzz(parseString(line[i++])); // ???
 
 

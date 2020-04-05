@@ -16,7 +16,7 @@ public class Calcs {
     private Double num1;
     private Double num2;
     private Double num3;
-    private String num4;
+    private Double num4;
     private String str0;
     private String str1;
     private String str2;
@@ -82,11 +82,11 @@ public class Calcs {
         this.num3 = num3;
     }
 
-    public String getNum4() {
+    public Double getNum4() {
         return num4;
     }
 
-    public void setNum4(String num4) {
+    public void setNum4(Double num4) {
         this.num4 = num4;
     }
 
