@@ -107,10 +107,10 @@ public class FeederMain {
         calcs.setStr1(parseString(line[i++]));
         calcs.setStr2(parseString(line[i++]));
         calcs.setStr3(parseString(line[i++]));
-        calcs.setInt0(parseMyInt(line[i++]));
-        calcs.setInt1(parseMyInt(line[i++]));
-        calcs.setInt2(Integer.parseInt(line[i++]));
-        calcs.setInt3(Integer.parseInt(line[i++]));
+        calcs.setInt0(parseInteger(line[i++]));
+        calcs.setInt1(parseInteger(line[i++]));
+        calcs.setInt2(parseInteger(line[i++]));
+        calcs.setInt3(parseInteger(line[i++]));
         calcs.setBool0(parseBoolean(parseString(line[i++])));
         calcs.setBool1(parseBoolean(parseString(line[i++])));
         calcs.setBool2(parseBoolean(parseString(line[i++])));
