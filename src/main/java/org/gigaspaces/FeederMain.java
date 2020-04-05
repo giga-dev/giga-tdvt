@@ -219,7 +219,7 @@ public class FeederMain {
     private Timestamp parseDateTime(String S) {
         String S1 = S.replace("\"","");
         if (S1.isEmpty()) return null;
-        return Timestamp.valueOf(LocalDateTime.parse(unquote(S)));
+        return Timestamp.valueOf(LocalDateTime.parse(unquote(S.replace(" ", "T"))));
     }
 
     private Date parseDate(String S) {
