@@ -206,7 +206,13 @@ public class FeederMain {
     }
 
     private Boolean parseBoolean(String s){
-        return s != null ? Boolean.parseBoolean(s) : null;
+        if(!validateString(s))
+            return null;
+        if(s.equals("1"))
+            return true;
+        if(s.equals("0"))
+            return false;
+        return Boolean.parseBoolean(s);
     }
 
     private String parseProductName(String S){
