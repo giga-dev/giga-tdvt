@@ -1,4 +1,4 @@
-package main.java.org.gigaspaces.model;
+package org.gigaspaces.model;
 
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.GigaSpaceConfigurer;

@@ -1,4 +1,4 @@
-package main.java.org.gigaspaces.model.superstore;
+package org.gigaspaces.model.superstore;
 
 import java.sql.Date;
 import java.sql.Time;
