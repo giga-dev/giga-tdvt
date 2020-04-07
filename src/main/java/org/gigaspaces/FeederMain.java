@@ -7,6 +7,8 @@ import main.java.org.gigaspaces.model.superstore.Staples;
 import org.apache.commons.io.IOUtils;
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.GigaSpaceConfigurer;
+import org.openspaces.core.space.CannotFindSpaceException;
+import org.openspaces.core.space.SpaceProxyConfigurer;
 import org.openspaces.core.space.UrlSpaceConfigurer;
 
 import java.io.FileInputStream;
@@ -25,8 +27,11 @@ import java.util.function.Function;
  */
 public class FeederMain {
 
-    private static final String Calcs_file = "C:\\Users\\intreviews\\IdeaProjects\\giga-tdvt\\src\\main\\resources\\Calcs_headers.csv";
-    private static final String Staples_file = "C:\\Users\\intreviews\\IdeaProjects\\giga-tdvt\\src\\main\\resources\\Staples_utf8_headers.csv";
+    private static final String Calcs_file = "/Calcs_headers.csv";
+    private static final String Staples_file = "/Staples_utf8_headers.csv";
+
+//    private static final String Calcs_file = "C:\\Users\\intreviews\\IdeaProjects\\giga-tdvt\\src\\main\\resources\\Calcs_headers.csv";
+//    private static final String Staples_file = "C:\\Users\\intreviews\\IdeaProjects\\giga-tdvt\\src\\main\\resources\\Staples_utf8_headers.csv";
 
     @Parameter(names={"--userName"})
     private String userName;
@@ -210,13 +215,13 @@ public class FeederMain {
     private Timestamp parseDateTime(String S) {
         if(!validateString(S))
             return null;
-        return Timestamp.valueOf(LocalDateTime.parse(unquote(S.replace(" ", "T"))));
+        return Timestamp.valueOf(unquote(S));
     }
 
     private Date parseDate(String S) {
         if(!validateString(S))
             return null;
-        return Date.valueOf(LocalDate.parse(unquote(S)));
+        return Date.valueOf(unquote(S));
     }
 
     private String parseString(String S) {
@@ -237,6 +242,7 @@ public class FeederMain {
     }
 
     private GigaSpace createSpace() {
+
         if(spaceUrl == null)
             spaceUrl = "jini://*/*/demo?groups=xap-15.5.0";
         UrlSpaceConfigurer configurer = new UrlSpaceConfigurer(spaceUrl);
@@ -246,5 +252,17 @@ public class FeederMain {
         if(userName != null && passWord != null)
             configurer.credentials(userName, passWord);
         return new GigaSpaceConfigurer(configurer).gigaSpace();
+
+//        {
+//            System.out.printf("Connecting to space demo");
+//            try {
+//                SpaceProxyConfigurer demo = new SpaceProxyConfigurer("demo");
+////                demo.lookupGroups("a");
+//                return new GigaSpaceConfigurer(demo).create();
+//            } catch (CannotFindSpaceException e) {
+//                System.err.println("Failed to find space: " + e.getMessage());
+//                throw e;
+//            }
+//        }
     }
 }
