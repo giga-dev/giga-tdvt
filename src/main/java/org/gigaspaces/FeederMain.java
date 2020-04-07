@@ -2,8 +2,9 @@ package main.java.org.gigaspaces;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import main.java.org.gigaspaces.model.superstore.Calcs;
+import main.java.org.gigaspaces.model.superstore.Staples;
 import org.apache.commons.io.IOUtils;
-import  main.java.org.gigaspaces.model.superstore.*;
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.GigaSpaceConfigurer;
 import org.openspaces.core.space.UrlSpaceConfigurer;
@@ -14,8 +15,6 @@ import java.net.URISyntaxException;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.function.Function;
@@ -26,16 +25,16 @@ import java.util.function.Function;
  */
 public class FeederMain {
 
-    private static final String Calcs_file = "/Calcs_headers.csv";
-    private static final String Staples_file = "/Staples_utf8_headers.csv";
+    private static final String Calcs_file = "C:\\Users\\intreviews\\IdeaProjects\\giga-tdvt\\src\\main\\resources\\Calcs_headers.csv";
+    private static final String Staples_file = "C:\\Users\\intreviews\\IdeaProjects\\giga-tdvt\\src\\main\\resources\\Staples_utf8_headers.csv";
 
-//    @Parameter(names={"--userName"}, required = true)
-//    private String userName;
-//
-//    @Parameter(names={"--passWord"}, required = true)
-//    private String passWord;
+    @Parameter(names={"--userName"})
+    private String userName;
 
-    @Parameter(names={"--space-url"}, required = true)
+    @Parameter(names={"--passWord"})
+    private String passWord;
+
+    @Parameter(names={"--space-url"})
     private String spaceUrl;
 
     @Parameter(names={"--lookup-group"})
@@ -51,27 +50,14 @@ public class FeederMain {
         System.out.println("Completed!");
     }
 
-    //  public static void main(String ... argv){
-
-//      // LocalDate S = new LocalDate.parse("2004-04-01");
-//       CharSequence S = "2004-04-01";
-//        Orders o = new Orders();
-//       o.setDate0(LocalDate.parse(S));
-//       // o.setTime1(Time.valueOf(S));
-//        System.out.println(o.getDate0());
-//   }
-
     public void run() throws IOException, URISyntaxException {
         GigaSpace space = createSpace();
-        //   GigaSpace space = null;
         loadCsv(space, Staples_file, this::convertStaples);
         loadCsv(space, Calcs_file, this::convertOrders);
-        // int thecount = space.count(null);
-        // System.out.println("the count:" + thecount);
     }
 
     private void loadCsv(GigaSpace space, String fileName, Function<String[], Object> converter) throws URISyntaxException, IOException {
-        IOUtils.readLines(FeederMain.class.getResourceAsStream(fileName), "UTF-8").stream()
+        IOUtils.readLines(new FileInputStream(fileName), "UTF-8").stream()
                 .skip(1)
                 .filter(line -> !line.isEmpty())
                 .map(line -> line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1))
@@ -84,7 +70,6 @@ public class FeederMain {
 
             space.write(o);
         } catch (Exception e) {
-            // System.out.println(e.getMessage());
             e.printStackTrace();
             throw new RuntimeException(e);
         }
@@ -252,11 +237,14 @@ public class FeederMain {
     }
 
     private GigaSpace createSpace() {
+        if(spaceUrl == null)
+            spaceUrl = "jini://*/*/demo?groups=xap-15.5.0";
         UrlSpaceConfigurer configurer = new UrlSpaceConfigurer(spaceUrl);
         if(lookupGroup != null) {
             configurer.lookupGroups(lookupGroup);
         }
+        if(userName != null && passWord != null)
+            configurer.credentials(userName, passWord);
         return new GigaSpaceConfigurer(configurer).gigaSpace();
-        //return new GigaSpaceConfigurer(configurer.credentials(userName, passWord)).gigaSpace();
     }
 }

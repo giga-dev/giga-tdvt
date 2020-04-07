@@ -10,16 +10,19 @@
          <url>http://maven-repository.openspaces.org</url>
       </repository>
    </repositories>
+   <properties>
+      <xap.version>15.5.0-SNAPSHOT</xap.version>
+   </properties>
    <dependencies>
       <dependency>
          <groupId>org.gigaspaces</groupId>
          <artifactId>xap-openspaces</artifactId>
-         <version>15.2.0-SNAPSHOT</version>
+         <version>${xap.version}</version>
       </dependency>
       <dependency>
          <groupId>org.gigaspaces</groupId>
          <artifactId>xap-datagrid</artifactId>
-         <version>15.2.0-SNAPSHOT</version>
+         <version>${xap.version}</version>
       </dependency>
       <!-- https://mvnrepository.com/artifact/com.beust/jcommander -->
       <dependency>
