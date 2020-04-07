@@ -1,9 +1,9 @@
-package main.java.org.gigaspaces;
+package org.gigaspaces;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-import main.java.org.gigaspaces.model.superstore.Calcs;
-import main.java.org.gigaspaces.model.superstore.Staples;
+import org.gigaspaces.model.superstore.Calcs;
+import org.gigaspaces.model.superstore.Staples;
 import org.apache.commons.io.IOUtils;
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.GigaSpaceConfigurer;
