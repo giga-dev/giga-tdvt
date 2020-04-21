@@ -37,7 +37,6 @@ public class Calcs {
     private Time time1;
     private Timestamp datetime0;
     private String datetime1;
-   // private Character zzz;
     private String zzz;
 
      @SpaceId
