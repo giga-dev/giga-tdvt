@@ -1,4 +1,4 @@
-package org.gigaspaces;
+package main.java.org.gigaspaces;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
@@ -11,6 +11,7 @@ import org.openspaces.core.space.CannotFindSpaceException;
 import org.openspaces.core.space.SpaceProxyConfigurer;
 import org.openspaces.core.space.UrlSpaceConfigurer;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.Date;
@@ -123,13 +124,13 @@ public class FeederMain {
         int i = 0;
         staples.setItem_count(Integer.parseInt(line[i++]));
         staples.setShip_priority(Integer.parseInt(line[i++]));
-        staples.setOrder_priority(line[i++]);
-        staples.setOrder_status(line[i++]);
+        staples.setOrder_priority(parseString(line[i++]));
+        staples.setOrder_status(parseString(line[i++]));
         staples.setOrder_quantity(Integer.parseInt(line[i++]));
         staples.setSales_total(Double.parseDouble(line[i++]));
         staples.setDiscount(Double.parseDouble(line[i++]));
         staples.setTax_rate(Double.parseDouble(line[i++]));
-        staples.setShip_mode(line[i++]);
+        staples.setShip_mode(parseString(line[i++]));
         staples.setFill_time(Integer.parseInt(line[i++]));
         staples.setGross_profit(Double.parseDouble(line[i++]));
         staples.setPrice(Double.parseDouble(line[i++]));
@@ -139,29 +140,29 @@ public class FeederMain {
         staples.setManager_name(parseString(line[i++]));
         staples.setEmployee_yrs_exp(Integer.parseInt(line[i++]));
         staples.setEmployee_salary(Double.parseDouble(line[i++]));
-        staples.setCustomer_name(line[i++]);
-        staples.setCustomer_state(line[i++]);
-        staples.setCall_center_region(line[i++]);
+        staples.setCustomer_name(parseString(line[i++]));
+        staples.setCustomer_state(parseString(line[i++]));
+        staples.setCall_center_region(parseString(line[i++]));
         staples.setCustomer_balance(Integer.parseInt(line[i++]));
-        staples.setCustomer_segment(line[i++]);
-        staples.setProd_type1(line[i++]);
-        staples.setProd_type2(line[i++]);
-        staples.setProd_type3(line[i++]);
-        staples.setProd_type4(line[i++]);
+        staples.setCustomer_segment(parseString(line[i++]));
+        staples.setProd_type1(parseString(line[i++]));
+        staples.setProd_type2(parseString(line[i++]));
+        staples.setProd_type3(parseString(line[i++]));
+        staples.setProd_type4(parseString(line[i++]));
         //       staples.setProduct_Name(line[i++]);// Max
         staples.setProduct_name(parseProductName(line[i++]));
-        staples.setProduct_container(line[i++]);
-        staples.setShip_promo(line[i++]);
-        staples.setSupplier_name(line[i++]);
+        staples.setProduct_container(parseString(line[i++]));
+        staples.setShip_promo(parseString(line[i++]));
+        staples.setSupplier_name(parseString(line[i++]));
         staples.setSupplier_balance(Integer.parseInt(line[i++]));
-        staples.setSupplier_region(line[i++]);
-        staples.setSupplier_state(line[i++]);
+        staples.setSupplier_region(parseString(line[i++]));
+        staples.setSupplier_state(parseString(line[i++]));
         staples.setOrder_id(Integer.parseInt(line[i++]));
         staples.setOrder_year(Integer.parseInt(line[i++]));
         staples.setOrder_month(Integer.parseInt(line[i++]));
         staples.setOrder_day(Integer.parseInt(line[i++]));
         staples.setOrder_date(Timestamp.valueOf(line[i++]));
-        staples.setOrder_quarter(line[i++]);
+        staples.setOrder_quarter(parseString(line[i++]));
         staples.setProduct_base_margin(Double.parseDouble(line[i++]));
         staples.setProduct_id(Integer.parseInt(line[i++]));
         staples.setReceive_time(Integer.parseInt(line[i++]));
@@ -169,9 +170,9 @@ public class FeederMain {
         staples.setShip_date(parseDateTime(line[i++]));
         staples.setShip_charge(Double.parseDouble(line[i++]));
         staples.setTotal_cycle_time(Integer.parseInt(line[i++]));
-        staples.setProduct_in_stock(line[i++]);
+        staples.setProduct_in_stock(parseString(line[i++]));
         staples.setPid(Integer.parseInt(line[i++]));
-        staples.setMarket_segment(line[i++]);
+        staples.setMarket_segment(parseString(line[i++]));
 
         return staples;
     }
